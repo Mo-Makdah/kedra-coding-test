@@ -1,0 +1,27 @@
+.table {
+  border-collapse: collapse;
+  background-color: white;
+  width: 100%;
+}
+
+.table tr {
+  border: 1px solid #e5e5e5;
+}
+
+.table th {
+  font-size: 16px;
+  white-space: nowrap;
+  padding: 0.6rem 0.5rem;
+  border: 1px solid #e5e5e5;
+}
+
+.table td {
+  font-size: 14px;
+  padding: 1rem 0.5rem;
+}
+
+.table td,
+.table th {
+  text-align: left;
+  width: max-content;
+}
