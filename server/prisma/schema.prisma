@@ -1,0 +1,38 @@
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+model Location {
+    id         Int    @id @default(autoincrement())
+    address    String
+    macAddress String
+
+    units Unit[]
+}
+
+model Unit {
+    id         Int    @id @default(autoincrement())
+    name       String
+    macAddress String @unique
+    capacity   Int
+
+    location   Location @relation(fields: [locationId], references: [id])
+    locationId Int
+
+    compartments Compartment[]
+}
+
+model Compartment {
+    id         Int    @id @default(autoincrement())
+    macAddress String
+    capacity   Int
+
+    unit   Unit @relation(fields: [unitId], references: [id])
+    unitId Int
+}

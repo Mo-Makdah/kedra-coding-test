@@ -4,9 +4,10 @@ import UnitTableRow from "./UnitTableRow";
 
 type Props = {
   units: Unit[];
+  delteUnitHandler: (unitId: number) => void;
 };
 
-const UnitsTable = ({ units }: Props) => {
+const UnitsTable = ({ units, delteUnitHandler }: Props) => {
   return (
     <table className={styles.table}>
       <thead>
@@ -19,7 +20,11 @@ const UnitsTable = ({ units }: Props) => {
       </thead>
       <tbody>
         {units.map((unit) => (
-          <UnitTableRow unit={unit} key={unit.id} />
+          <UnitTableRow
+            unit={unit}
+            key={unit.id}
+            delteUnitHandler={delteUnitHandler}
+          />
         ))}
       </tbody>
     </table>

@@ -1,4 +1,4 @@
-import { Location } from "./location";
+import { Compartment } from "./compartment";
 
 export type Unit = {
   id: number;
@@ -6,5 +6,8 @@ export type Unit = {
   macAddress: string;
   capacity: number;
   locationId: number;
-  locationAddress: Location["address"];
+  location?: string;
+  compartments: Compartment[];
 };
+
+export type UnitFormType = Omit<Unit, "id" | "location" | "compartments">;

@@ -1,13 +1,12 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-import styles from "./index.module.css";
-
 type Props<T extends string | number> = {
   label?: string;
   type?: "text" | "number";
   value?: T;
   onChange: (value: T) => void;
+  required?: boolean;
 };
 
 export function MUITextField<T extends string | number = string>({
@@ -15,6 +14,7 @@ export function MUITextField<T extends string | number = string>({
   onChange,
   value,
   label,
+  required,
 }: Props<T>) {
   return (
     <Box
@@ -26,7 +26,7 @@ export function MUITextField<T extends string | number = string>({
       autoComplete="off"
     >
       <TextField
-        label={label}
+        label={`${label}${required ? " *" : ""}`}
         variant="outlined"
         sx={{
           width: "100%",

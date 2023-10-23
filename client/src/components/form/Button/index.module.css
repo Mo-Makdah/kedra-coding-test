@@ -10,6 +10,7 @@
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .primary {
@@ -44,7 +45,7 @@
 
 .delete {
   background-color: #fff;
-  border-color: #6c757d;
+  border: 1px solid #6c757d;
   color: #dc3545;
 }
 

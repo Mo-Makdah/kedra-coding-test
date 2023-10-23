@@ -27,3 +27,15 @@
 .dropdownContent p:hover {
   background-color: #ddd;
 }
+
+.dropdownContent a {
+  color: black;
+  padding: 0.2rem 1rem;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdownContent a:hover {
+  background-color: #ddd;
+}

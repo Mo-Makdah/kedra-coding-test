@@ -2,8 +2,15 @@ import OptionsIcon from "@/components/icons/optionsIcon";
 import Popover from "@mui/material/Popover";
 import styles from "./index.module.css";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { paths } from "@/router/paths";
 
-const OptionsCell = () => {
+type Props = {
+  unitId: number;
+  deleteHandler: (unitId: number) => void;
+};
+
+const OptionsCell = ({ unitId, deleteHandler }: Props) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -13,6 +20,7 @@ const OptionsCell = () => {
     setAnchorEl(null);
   };
   const isOpen = !!anchorEl;
+
   return (
     <td>
       <div className={styles.optionsIcon} onClick={handleClick}>
@@ -32,9 +40,14 @@ const OptionsCell = () => {
         }}
       >
         <div className={styles.dropdownContent}>
-          <p>View</p>
-          <p>Edit</p>
-          <p>Delete</p>
+          <NavLink to={`${paths.unitDetailsPath}/${unitId}`}>Edit</NavLink>
+          <p
+            onClick={() => {
+              deleteHandler(unitId);
+            }}
+          >
+            Delete
+          </p>
         </div>
       </Popover>
     </td>
