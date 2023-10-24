@@ -1,4 +1,4 @@
-# Project Overview (With the help of ChatGPT)
+# Project Overview
 
 This project involves the development of a web application with a client-side implemented using Vite and a server-side implemented using Nest. The application relies on SQLite as its database, and you can follow the instructions below to set up and run the project on your local environment.
 
