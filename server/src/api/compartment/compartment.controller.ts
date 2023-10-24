@@ -10,7 +10,7 @@ import {
 } from "@nestjs/common";
 import { CompartmentService } from "./compartment.service";
 
-import { CompartmentDto } from "./dto/compartment.dto";
+import { CompartmentDto, UpdateCompartmentDto } from "./dto/compartment.dto";
 
 @Controller("compartments")
 export class CompartmentController {
@@ -18,21 +18,24 @@ export class CompartmentController {
 
   @Post("")
   async createCompartment(@Body() body: CompartmentDto) {
-    return this.compartmentService.createUnit(body);
+    return this.compartmentService.createCompartment(body);
   }
 
   @Put(":id")
-  async updateUnit(
+  async updateCompartment(
     @Param("id", ParseIntPipe) id: number,
-    @Body() body: CompartmentDto,
+    @Body() body: UpdateCompartmentDto,
   ) {
-    const product = await this.compartmentService.updateCompartment(id, body);
-    if (!product) throw new NotFoundException();
-    return product;
+    const compartment = await this.compartmentService.updateCompartment(
+      id,
+      body,
+    );
+    if (!compartment) throw new NotFoundException();
+    return compartment;
   }
 
   @Delete(":id")
-  async deleteUnit(@Param("id", ParseIntPipe) id: number) {
+  async deleteCompartment(@Param("id", ParseIntPipe) id: number) {
     const product = await this.compartmentService.deleteCompartment(id);
     if (!product) throw new NotFoundException();
     return product;

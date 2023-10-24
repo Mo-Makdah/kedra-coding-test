@@ -49,6 +49,15 @@ export class UnitService {
   async updateUnit(id: number, unit: UnitDto) {
     const { name, capacity, macAddress, locationId } = unit;
 
+    const existingCompartments = await this.prisma.compartment.findMany({
+      where: {
+        unitId: id,
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+
     try {
       return await this.prisma.unit.update({
         where: {
@@ -61,6 +70,23 @@ export class UnitService {
           location: {
             connect: {
               id: locationId,
+            },
+          },
+          compartments: {
+            update: existingCompartments.map((compartment, index) => ({
+              where: {
+                id: compartment.id,
+              },
+              data: {
+                macAddress: `${macAddress}-${index + 1}`,
+              },
+            })),
+          },
+        },
+        include: {
+          compartments: {
+            orderBy: {
+              id: "asc",
             },
           },
         },

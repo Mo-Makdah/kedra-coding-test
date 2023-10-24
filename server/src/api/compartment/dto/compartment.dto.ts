@@ -11,8 +11,11 @@ export class CompartmentDto {
   @IsNumber()
   @Transform(({ value }) => +value)
   capacity: number;
+}
 
+export class UpdateCompartmentDto {
   @IsNotEmpty()
-  @IsString()
-  macAddress: string;
+  @IsNumber()
+  @Transform(({ value }) => +value)
+  capacity: number;
 }
