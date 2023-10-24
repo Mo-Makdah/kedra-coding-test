@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -28,9 +27,9 @@ export class UnitController {
 
   @Get(":id")
   async getUnit(@Param("id", ParseIntPipe) id: number) {
-    const product = await this.unitService.getUnit(id);
-    if (!product) throw new NotFoundException();
-    return product;
+    const unit = await this.unitService.getUnit(id);
+    if (!unit) throw new NotFoundException();
+    return unit;
   }
 
   @Post("")
@@ -43,15 +42,15 @@ export class UnitController {
     @Param("id", ParseIntPipe) id: number,
     @Body() body: UnitDto,
   ) {
-    const product = await this.unitService.updateUnit(id, body);
-    if (!product) throw new NotFoundException();
-    return product;
+    const unit = await this.unitService.updateUnit(id, body);
+    if (!unit) throw new NotFoundException();
+    return unit;
   }
 
   @Delete(":id")
   async deleteUnit(@Param("id", ParseIntPipe) id: number) {
-    const product = await this.unitService.deleteUnit(id);
-    if (!product) throw new NotFoundException();
-    return product;
+    const unit = await this.unitService.deleteUnit(id);
+    if (!unit) throw new NotFoundException();
+    return unit;
   }
 }
