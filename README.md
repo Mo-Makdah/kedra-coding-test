@@ -58,7 +58,7 @@ cd server
 npm install
 ```
 
-#### Generate Prisma typings (Assuming you have Prisma set up for the database):
+#### Generate Prisma typings (You'll probably get asked to install prisma so type y):
 
 ```shell
 npm run generate
