@@ -66,6 +66,7 @@ const UnitDetailsPage = () => {
     const { data, errorMessage } = await createUnit(unit);
     if (data) {
       setUnit(data);
+      naviagate(`${paths.unitDetailsPath}/${data.id}`);
     } else {
       setFormError(errorMessage);
     }

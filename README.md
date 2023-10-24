@@ -1,4 +1,4 @@
-# Project Overview
+# Project Overview (With the help of ChatGPT)
 
 This project involves the development of a web application with a client-side implemented using Vite and a server-side implemented using Nest. The application relies on SQLite as its database, and you can follow the instructions below to set up and run the project on your local environment.
 
@@ -20,16 +20,25 @@ This project involves the development of a web application with a client-side im
 
 Follow these steps to set up and run the project on your local machine:
 
-```shell
 # Client Setup
-# Open a terminal.
-# Navigate to the client project directory:
+
+#### Open a terminal.
+
+#### Navigate to the client project directory:
+
+```shell
 cd client
+```
 
-# Install dependencies using npm:
+#### Install dependencies using npm:
+
+```shell
 npm install
+```
 
-# Start the client development server:
+#### Start the client development server:
+
+```shell
 npm run dev
 ```
 

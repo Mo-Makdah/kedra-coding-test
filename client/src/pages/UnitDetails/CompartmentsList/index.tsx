@@ -24,7 +24,12 @@ const CompartmentsList = ({ compartments, unit, setUnit }: Props) => {
     if (data) {
       setUnit((state) => {
         if (!state) return state;
-        return { ...state, compartments: [...state.compartments, data] };
+        return {
+          ...state,
+          compartments: state.compartments
+            ? [...state.compartments, data]
+            : [data],
+        };
       });
     } else {
       alert(errorMessage);
