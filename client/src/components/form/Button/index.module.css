@@ -29,7 +29,7 @@
 
 .secondary {
   background-color: #fff;
-  border-color: #6c757d;
+  border: 1px solid #6c757d;
   color: #007bff;
   display: flex;
   align-items: center;

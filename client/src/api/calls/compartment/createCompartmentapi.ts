@@ -2,23 +2,22 @@ import { sendAxiosRequest } from "@/api/clients/axios";
 import { envVars } from "@/envVars";
 import { ApiResponse } from "@/types/api.type";
 import { AxiosHttpError } from "@/types/error.type";
-import { Unit, UnitFormType } from "@/types/unit";
+import { Compartment, CompartmentFormType } from "@/types/compartment";
 
-type UpdateUnitInput = UnitFormType;
-type UpdateUnitResponse = Unit;
+type CreateCompartmentInput = CompartmentFormType;
+type CreateCompartmentResponse = Compartment;
 
-export const updateUnit = async (
-  id: number,
-  input: UpdateUnitInput
-): Promise<ApiResponse<UpdateUnitResponse>> => {
+export const CreateCompartment = async (
+  input: CreateCompartmentInput
+): Promise<ApiResponse<CreateCompartmentResponse>> => {
   const baseURL = envVars.BASE_API_URL;
-  const url = `${baseURL}/units/${id}`;
+  const url = `${baseURL}/compartments`;
   try {
     const response = await sendAxiosRequest<
-      UpdateUnitResponse,
-      UpdateUnitInput
+      CreateCompartmentResponse,
+      CreateCompartmentInput
     >({
-      method: "put",
+      method: "post",
       url,
       data: input,
     });

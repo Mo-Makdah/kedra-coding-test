@@ -38,7 +38,7 @@ const MyUnitsPage = () => {
     if (data) {
       setUnits((prev) => prev?.filter((unit) => unit.id !== unitId));
     } else {
-      setFetchError(errorMessage);
+      alert(errorMessage);
     }
 
     setLoading(false);

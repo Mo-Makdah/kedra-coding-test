@@ -28,6 +28,15 @@ export class UnitService {
   async createUnit(unit: UnitDto) {
     const { name, capacity, macAddress, locationId } = unit;
 
+    const existingMacAddress = await this.prisma.unit.findUnique({
+      where: {
+        macAddress,
+      },
+    });
+
+    if (existingMacAddress)
+      throw new BadRequestException("Mac address already exists");
+
     try {
       return await this.prisma.unit.create({
         data: {
@@ -49,16 +58,24 @@ export class UnitService {
   async updateUnit(id: number, unit: UnitDto) {
     const { name, capacity, macAddress, locationId } = unit;
 
-    const existingCompartments = await this.prisma.compartment.findMany({
+    const existingMacAddress = await this.prisma.unit.findUnique({
       where: {
-        unitId: id,
-      },
-      orderBy: {
-        id: "asc",
+        macAddress,
       },
     });
 
+    if (existingMacAddress)
+      throw new BadRequestException("Mac address already exists");
+
     try {
+      const existingCompartments = await this.prisma.compartment.findMany({
+        where: {
+          unitId: id,
+        },
+        orderBy: {
+          id: "asc",
+        },
+      });
       return await this.prisma.unit.update({
         where: {
           id,

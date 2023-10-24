@@ -36,8 +36,6 @@ export class CompartmentController {
 
   @Delete(":id")
   async deleteCompartment(@Param("id", ParseIntPipe) id: number) {
-    const product = await this.compartmentService.deleteCompartment(id);
-    if (!product) throw new NotFoundException();
-    return product;
+    return this.compartmentService.deleteCompartment(id);
   }
 }

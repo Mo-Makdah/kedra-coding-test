@@ -7,6 +7,7 @@ type Props<T extends string | number> = {
   value?: T;
   onChange: (value: T) => void;
   required?: boolean;
+  disabled?: boolean;
 };
 
 export function MUITextField<T extends string | number = string>({
@@ -15,6 +16,7 @@ export function MUITextField<T extends string | number = string>({
   value,
   label,
   required,
+  disabled,
 }: Props<T>) {
   return (
     <Box
@@ -34,6 +36,7 @@ export function MUITextField<T extends string | number = string>({
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value as T)}
+        disabled={disabled}
       />
     </Box>
   );

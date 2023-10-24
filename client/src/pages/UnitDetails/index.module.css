@@ -25,3 +25,9 @@
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
+
+.compartmentsListContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

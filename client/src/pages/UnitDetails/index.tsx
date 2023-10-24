@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import { paths } from "@/router/paths";
 import BackArrowIcon from "@/components/icons/backArrowIcon";
@@ -25,6 +25,8 @@ const UnitDetailsPage = () => {
 
   const params = useParams();
   const unitId = params.id;
+
+  const naviagate = useNavigate();
 
   const locationsOptions: SelectOption[] =
     locations?.map(({ id, address }) => ({
@@ -100,6 +102,7 @@ const UnitDetailsPage = () => {
     const { data, errorMessage } = await deleteUnit(+unitId);
     if (data) {
       setUnit(data);
+      naviagate(paths.unitsPath);
     } else {
       alert(errorMessage);
     }
@@ -122,13 +125,13 @@ const UnitDetailsPage = () => {
   };
 
   useEffect(() => {
-    console.log("UnitDetailsPage useEffect", unitId && isNaN(+unitId));
     if ((unitId && +unitId < 1) || (unitId && isNaN(+unitId))) {
       setFetchError("Invalid unit ID");
       return;
     }
 
     getLocationsHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -159,7 +162,15 @@ const UnitDetailsPage = () => {
               deleteUnitHandler();
             }}
           />
-          <CompartmentsList compartments={unit?.compartments ?? []} />
+          {!!unit && unitId && (
+            <div className={styles.compartmentsListContainer}>
+              <CompartmentsList
+                compartments={unit?.compartments ?? []}
+                setUnit={setUnit}
+                unit={unit}
+              />
+            </div>
+          )}
         </>
       )}
     </div>

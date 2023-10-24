@@ -1,26 +1,20 @@
-import { sendAxiosRequest } from "@/api/clients/axios";
-import { envVars } from "@/envVars";
 import { ApiResponse } from "@/types/api.type";
+import { envVars } from "@/envVars";
 import { AxiosHttpError } from "@/types/error.type";
-import { Unit, UnitFormType } from "@/types/unit";
+import { sendAxiosRequest } from "@/api/clients/axios";
+import { Unit } from "@/types/unit";
 
-type UpdateUnitInput = UnitFormType;
-type UpdateUnitResponse = Unit;
+type DeleteCompartmentResponse = Unit;
 
-export const updateUnit = async (
-  id: number,
-  input: UpdateUnitInput
-): Promise<ApiResponse<UpdateUnitResponse>> => {
+export const deleteCompartment = async (
+  id: number
+): Promise<ApiResponse<DeleteCompartmentResponse>> => {
   const baseURL = envVars.BASE_API_URL;
-  const url = `${baseURL}/units/${id}`;
+  const url = `${baseURL}/compartments/${id}`;
   try {
-    const response = await sendAxiosRequest<
-      UpdateUnitResponse,
-      UpdateUnitInput
-    >({
-      method: "put",
+    const response = await sendAxiosRequest<DeleteCompartmentResponse>({
+      method: "delete",
       url,
-      data: input,
     });
     return {
       data: response.data,
@@ -32,7 +26,6 @@ export const updateUnit = async (
 
     if (axiosError.response?.data) {
       const { message } = axiosError.response.data;
-      console.log("message", axiosError.response.data);
       return {
         errorMessage:
           typeof message === "string" ? message : message.join(", "),

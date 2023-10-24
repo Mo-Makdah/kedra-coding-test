@@ -4,3 +4,12 @@ export type Compartment = {
   capacity: number;
   unitId: number;
 };
+
+export type CompartmentFormType = {
+  capacity: number;
+  unitId: number;
+};
+
+export type UpdateCompartmentInputType = {
+  capacity: number;
+};

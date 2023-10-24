@@ -11,7 +11,7 @@ export const createUnit = async (
   input: CreateUnitInput
 ): Promise<ApiResponse<CreateUnitResponse>> => {
   const baseURL = envVars.BASE_API_URL;
-  const url = `${baseURL}/units}`;
+  const url = `${baseURL}/units`;
   try {
     const response = await sendAxiosRequest<
       CreateUnitResponse,

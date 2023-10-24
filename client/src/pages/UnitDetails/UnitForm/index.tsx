@@ -23,6 +23,7 @@ const UnitForm = ({
   deleteLoading,
   formError,
   submitLoading,
+  deleteUnitHandler,
 }: Props) => {
   const [formFields, setFormFields] = useState<UnitFormType>(
     unit
@@ -72,7 +73,13 @@ const UnitForm = ({
       {!!formError && <div>{formError}</div>}
       <div className={styles.buttons}>
         {unit && (
-          <Button theme="delete" loading={deleteLoading}>
+          <Button
+            theme="delete"
+            loading={deleteLoading}
+            onClick={() => {
+              deleteUnitHandler();
+            }}
+          >
             Delete
           </Button>
         )}
